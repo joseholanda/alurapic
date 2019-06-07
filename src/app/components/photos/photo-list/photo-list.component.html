@@ -1,9 +1,13 @@
-<ol class="list-unstyled row">
-  <li *ngFor="let photo of photos" class="col-4">
-    <ap-photo 
-      [url]="photo.url"
-      [description]="photo.description">
-    </ap-photo>
-
-  </li>
-</ol>
+<p *ngIf="!photos.length" class="text-center text-muted">
+  Nenhuma foto encontrada.
+</p>
+<div class="text-center mt-3 mb-3">
+  <form>
+      <input autofocus (keyup)="debounce.next($event.target.value)" 
+      class="form-control mr-sm-2 col-md-2" 
+      type="search" placeholder="Search" aria-label="Search">
+  </form>
+</div>
+<ap-photos [photos]="photos | filterByDescription: filter">
+  
+</ap-photos>
